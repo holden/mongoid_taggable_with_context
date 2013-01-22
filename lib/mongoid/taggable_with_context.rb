@@ -147,6 +147,12 @@ module Mongoid::TaggableWithContext
     def tagged_with(context, tags)
       tags = convert_string_to_array(tags, get_tag_separator_for(context)) if tags.is_a? String
       array_field = tag_options_for(context)[:array_field]
+      any_in(array_field => tags)
+    end
+
+    def tagged_with_all(context, tags)
+      tags = convert_string_to_array(tags, get_tag_separator_for(context)) if tags.is_a? String
+      array_field = tag_options_for(context)[:array_field]
       all_in(array_field => tags)
     end
 
