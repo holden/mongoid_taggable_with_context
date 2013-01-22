@@ -150,12 +150,6 @@ module Mongoid::TaggableWithContext
       any_in(array_field => tags)
     end
 
-    def tagged_with_all(context, tags)
-      tags = convert_string_to_array(tags, get_tag_separator_for(context)) if tags.is_a? String
-      array_field = tag_options_for(context)[:array_field]
-      all_in(array_field => tags)
-    end
-
     # Helper method to convert a a tag input value of unknown type
     # to a formatted array.
     def format_tags_for_write(value, separator = TAGGABLE_DEFAULT_SEPARATOR)
